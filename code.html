@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Usher Gluck</title>
+    <title>Rewind: A Coding Project by Usher Gluck</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
     <!-- Nav Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/UGLogoInverted.svg" class="d-inline-block" width="25" height="20" >&nbsp;APP NAME</a>
+            <a class="navbar-brand rewind" href="#"><img src="img/RewindW.svg" class="d-inline-block rewind" width="25" height="20" >&nbsp;Rewind</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -51,22 +51,131 @@
     </nav>
     <!-- Main Section -->
     <main class="flex-shrink-0">
-        <div class="container py-6 px-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME</h2>
+        <div class="container py-6 px-3">
+            <h2 class="border-1 border-bottom border-dark">The Code for<img src="/img/RewindW.svg" alt="Rewind Logo" width="30" height="24" class="ms-2 me-1"><span class="rewind">Rewind</span></h2>
             <div class="row row-cols-1 row-cols-lg-2">
-                <div class="col-lg-8">
-                    <pre class="line-numbers"><code class="language-javascript">
-                            //Call hello world
-                            function helloWorld(){
-                                alert("Hello World")
+                <div class="col-lg-8 order-last order-lg-first">
+                    <pre class="line-numbers">
+                        <code class="language-javascript">
+                            //Get the string from the page
+                            //Controller function
+                            function getValue(){
+
+                                document.getElementById("alert").classList.add("invisible");
+
+                                let userString = document.getElementById("userString").value;
+
+                                let revString = reverseString(userString);
+
+                                if(userString.length > 0 && userString.length < 700){
+                                    displayString(revString);
+                                }else{
+                                    if(userString.length == 0){
+                                        tooShort();
+                                    }else{
+                                        tooLong();
+                                    }
+                                }
+                            }
+
+                            //Reverse the string
+                            //Logic function
+                            function reverseString(userString){
+
+                                let revString = [];
+
+                                //Reverse a string using a for-loop
+                                for (let i = userString.length - 1; i >= 0; i--) {
+                                    revString += userString[i];
+                                }
+                                return revString;
+                            }
+
+                            //Display reversed string to the user
+                            //View function
+                            function displayString(revString){
+
+                                //Write the message to the page
+                                document.getElementById("msg").innerHTML = `<strong>Your string in reverse is:</strong> ${revString}`;
+
+                                //Turn on the alert box
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
+
+                            function tooShort(){
+                                
+                                //Error message for empty input
+                                document.getElementById("msg").innerHTML = "<strong>You must enter content to play.</strong>";
+
+                                //Turn on the alert box
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
+
+                            function tooLong(){
+                                
+                                //Error message for empty input
+                                document.getElementById("msg").innerHTML = "<strong>Your input is too long. Try something shorter.</strong>";
+
+                                //Turn on the alert box
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
+
+                            function clearFields(){
+                                
+                                //Clear text input
+                                document.getElementById("userString").value = "";
+
+                                //Hide the alert with previously reversed strings
+                                document.getElementById("alert").classList.add("invisible");
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is Structured in one Function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with the message: "Hello World".</p>
+                    <p class="text-center fw-bolder">
+                        The code for Rewind is structured with three main functions, 
+                        plus two additional functions for validation, and another for resetting the input field.
+                    </p>
+                    <h5>Function 1:</h5>
+                    <p>
+                        When the <span class="rewind">Rewind</span> button is clicked, the controller function 
+                        <code>getValue()</code> is called. 
+                        It stores the user input into the <code>userString</code> 
+                        variable, and passes it to the <code>reverseString</code> method.
+                    </p>
+                    <h5>Function 2:</h5>
+                    <p>
+                        The <code>reverseString</code> function declares an array <code>revString</code>, 
+                        and uses a for-loop to iterate through the <code>userString</code> 
+                        in reverse, and add each character to the <code>revString</code> array.
+                    </p>
+                    <h5>Function 3:</h5>
+                    <p>
+                        The <code>displayString</code> function is responsible for displaying the 
+                        <code>revString</code> to the user. This method removes the <code>invisible</code> 
+                        Bootstrap class from the element that displays the reversed text, 
+                        so that it is displayed to the user.
+                    </p>
+                    <h5>Validation Functions</h5>
+                    <p>
+                        The program uses an if-statement to validate that the user input is 
+                        between 1 and 700 characters long. If the user clicks Rewind without any input, 
+                        the statement runs the <code>tooShort</code> function which removes 
+                        the above-mentioned <code>invisible</code> Bootstrap class from the 
+                        display element and indicates that input is needed.
+                    </p>
+                    <p>
+                        If the user input is greater than 700 characters, the <code>tooLong</code> 
+                        function reveals the same display element, only with a message 
+                        indicating that the input is too long.
+                    </p>
+                    <h5>Resetting Input</h5>
+                    <p>
+                        Finally, there is the <code>clearFields</code> function that gets called 
+                        by an Event Listener. This clears the input box, and add the 
+                        <code>invisible</code> Bootstrap class back to the display area. 
+                        This function is invoked by placing the cursor into the input box.
+                    </p>
                 </div>
             </div>
         </div>
